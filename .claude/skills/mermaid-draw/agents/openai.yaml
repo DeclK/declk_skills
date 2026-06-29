@@ -1,0 +1,4 @@
+interface:
+  display_name: "Mermaid Draw"
+  short_description: "Turn Markdown flow notes into compact rendered Mermaid diagrams."
+  default_prompt: "Use this skill to convert a Markdown flow description into a compact, styled Mermaid flowchart and render PNG/SVG outputs."

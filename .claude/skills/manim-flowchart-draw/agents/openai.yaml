@@ -1,0 +1,4 @@
+interface:
+  display_name: "Manim Flowchart Draw"
+  short_description: "Create simple flexible Manim snake flowcharts."
+  default_prompt: "Use this skill to turn a linear process description into a polished Manim flowchart with typed nodes, snake layout, mixed CJK/Latin typography, fixed-size arrows, and rendered PNG output."

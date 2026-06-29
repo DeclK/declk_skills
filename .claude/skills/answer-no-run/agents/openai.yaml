@@ -1,0 +1,4 @@
+interface:
+  display_name: "Answer No Run"
+  short_description: "Answer clarification questions without executing."
+  default_prompt: "Use answer-no-run to answer my question and explain your reasoning without executing commands or modifying files."

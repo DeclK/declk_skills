@@ -1,0 +1,4 @@
+interface:
+  display_name: "Project DeepWiki"
+  short_description: "Map repo structure, dependencies, entrypoints; render PNG graphs."
+  default_prompt: "Generate a DeepWiki-style project map for this repository in natural Chinese, preserving English only for exact identifiers, paths, code, commands, and necessary established terms; include file summaries, internal dependencies, entrypoints, core modules, rendered Mermaid PNG/SVG graphs, and a suggested reading order."
