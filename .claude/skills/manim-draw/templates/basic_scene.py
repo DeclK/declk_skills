@@ -4,11 +4,21 @@ Template for manim-draw diagrams.
 Copy this file, rename MyScene and SCENE_CLASS, then run:
     python <this_file>.py
 
-Includes TextBox, NestedTextBox, TreeNode, and TreeLayout building blocks.
+Includes TextBox, NestedTextBox, TreeNode, TreeLayout building blocks,
+Polyline/BoxConnector connectors, and CJK/LATIN typography constants.
+For snake flowcharts use templates/flowchart_scene.py instead.
 """
 
 from __future__ import annotations
 import math
+import sys
+from pathlib import Path
+
+# Connector（从 skill assets/connector.py 复制到项目 diagrams/common/，多图复用；
+# 单图时复制到图目录并去掉 ../common 段）
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "common"))
+from connector import BoxConnector, Polyline  # noqa: E402
+
 from manim import *
 
 
@@ -571,14 +581,35 @@ class TreeLayout(VGroup):
 # Scene
 # ═══════════════════════════════════════════════════════════════════════════════
 
+config.background_color = "#FFFFFF"
+
+# 字体（rules/typography.md）：所有文字显式 font=，禁止 per-node 缩放。
+CJK_FONT = "LXGW WenKai"      # 中文
+LATIN_FONT = "JetBrains Mono" # 拉丁/代码
+FONT = LATIN_FONT
+
+
 class MyScene(Scene):
     def construct(self):
         # TODO: build your diagram here
 
-        box = TextBox("Hello, manim-draw!")
-        box.scale_to_fit_width(config.frame_width - 2)
+        box = TextBox("Hello, manim-draw!", font_size=40, font=FONT,
+                      box_width=4.5, box_height=1.0, padding=0.2)
         box.move_to(ORIGIN)
-        self.play(Create(box))
+
+        # 有折线/方框连接时用 BoxConnector（rules/connector.md）：
+        # conn = BoxConnector(box_a, box_b, obstacles=[box_c], dashed=True)
+        # 注意：TextBox 固定框宽时文字尺寸与 font_size 无关（等宽陷阱，见 typography.md）
+
+        group = VGroup(box)
+        margin = 1.0
+        if group.width > config.frame_width - margin:
+            group.scale_to_fit_width(config.frame_width - margin)
+        if group.height > config.frame_height - margin:
+            group.scale_to_fit_height(config.frame_height - margin)
+        group.move_to(ORIGIN)
+
+        self.add(group)
         self.wait(1)
 
 

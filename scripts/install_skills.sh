@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-REPO_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+REPO_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 SKILLS_SRC="${SKILLS_SRC:-$REPO_DIR/.claude/skills}"
 
 # Override these if you keep Claude/Codex config somewhere non-standard.
@@ -63,4 +63,4 @@ echo ""
 echo "Next steps:"
 echo "  - Restart Claude Code to pick up new Claude skills."
 echo "  - Restart Codex to pick up new Codex skills."
-echo "  - Tip: run the 'setup-vscode' skill to deploy your VSCode configs."
+echo "  - Tip: run setup_claude_code.sh to install the Claude Code CLI and configure the API endpoint."
